@@ -86,7 +86,7 @@ with st.form("prediction_form"):
     # Categorical features
     for feature, options in categorical_features.items():
         col_name = display_to_col(feature)
-        user_input[col_name] = st.selectbox(sorted(feature), options)
+        user_input[col_name] = st.selectbox(feature, sorted(options))
 
     # Submit button
     submitted = st.form_submit_button("Predict")
