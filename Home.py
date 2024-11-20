@@ -26,11 +26,11 @@ import numpy as np
 @st.cache_resource
 def load_variables():
     with open("progress.pkl", "rb") as f:
-        progress = pickle.load(f)
+        progress = pd.compat.pickle_compat(f)
     with open("preprocessor.pkl", "rb") as f:
-        preprocessor = pickle.load(f)
+        preprocessor = pd.compat.pickle_compat(f)
     with open("preprocessing_feature_names.pkl", "rb") as f:
-        feature_names = pickle.load(f)
+        feature_names = pd.compat.pickle_compat(f)
     return progress, preprocessor, feature_names
 
 progress, preprocessor, feature_names = load_variables()
