@@ -1,6 +1,6 @@
 # Packages
 import streamlit as st
-import pickle
+# import pickle
 import numpy
 import pandas as pd
 
@@ -17,10 +17,6 @@ st.set_page_config(page_title=page_title, page_icon=page_icon, layout="centered"
 
 # Main
 st.title('Adult Census Income Binary Classifier')
-
-import streamlit as st
-import pickle
-import numpy as np
 
 # Load the machine learning model
 @st.cache_resource
