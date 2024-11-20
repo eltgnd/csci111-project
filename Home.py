@@ -21,22 +21,19 @@ st.title('Adult Census Income Binary Classifier')
 # Load the machine learning model
 @st.cache_resource
 def load_variables():
-    with open("progress.pkl", "rb") as f:
-        progress = pickle.load(f)
+    with open("models.pkl", "rb") as f:
+        models = pickle.load(f)
     with open("preprocessor.pkl", "rb") as f:
         preprocessor = pickle.load(f)
     with open("preprocessing_feature_names.pkl", "rb") as f:
         feature_names = pickle.load(f)
+    xtrain_df = pd.read_pickle('xtrain_df.pkl')
 
-    # progress = pd.compat.pickle_compat('progress.pkl')
-    # preprocessor = pd.compat.pickle_compat('preprocessor.pkl')
-    # feature_names = pd.compat.pickle_compat('preprocessing_feature_names.pkl')
+    return models, xtrain_df, preprocessor, feature_names
 
-    return progress, preprocessor, feature_names
-
-progress, preprocessor, feature_names = load_variables()
-logreg = progress['logreg']
-rfc = progress['rfc']
+models, xtrain_df, preprocessor, feature_names = load_variables()
+logreg = models['logreg']
+rfc = models['rfc']
 
 def display_to_col(s):
     return s.lower().replace(' ', '_')
@@ -53,8 +50,7 @@ def preprocess(a):
     for col_idx, value in zip(x_processed.indices, x_processed.data):
         df.iloc[0, col_idx] = value
 
-    # x_feature_selected = df[progress['x_train'].columns.tolist()]
-    selected_features = progress['x_train'].columns.tolist()
+    selected_features = xtrain_df.columns.tolist()
     x_feature_selected = df[selected_features]
     return x_feature_selected.to_numpy().reshape(1,-1)
 
