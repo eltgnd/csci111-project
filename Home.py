@@ -27,7 +27,8 @@ def load_variables():
         preprocessor = pickle.load(f)
     with open("preprocessing_feature_names.pkl", "rb") as f:
         feature_names = pickle.load(f)
-    xtrain_df = pd.read_pickle('xtrain_df.pkl')
+    with open("xtrain_df.pkl", "rb") as f:
+        xtrain_df = pd.compat.pickle_compat.load(f)
 
     return models, xtrain_df, preprocessor, feature_names
 
