@@ -1,6 +1,6 @@
 # Packages
 import streamlit as st
-# import pickle
+import pickle
 import numpy
 import pandas as pd
 
@@ -22,11 +22,16 @@ st.title('Adult Census Income Binary Classifier')
 @st.cache_resource
 def load_variables():
     with open("progress.pkl", "rb") as f:
-        progress = pd.compat.pickle_compat(f)
+        progress = pickle.load(f)
     with open("preprocessor.pkl", "rb") as f:
-        preprocessor = pd.compat.pickle_compat(f)
+        preprocessor = pickle.load(f)
     with open("preprocessing_feature_names.pkl", "rb") as f:
-        feature_names = pd.compat.pickle_compat(f)
+        feature_names = pickle.load(f)
+
+    # progress = pd.compat.pickle_compat('progress.pkl')
+    # preprocessor = pd.compat.pickle_compat('preprocessor.pkl')
+    # feature_names = pd.compat.pickle_compat('preprocessing_feature_names.pkl')
+
     return progress, preprocessor, feature_names
 
 progress, preprocessor, feature_names = load_variables()
