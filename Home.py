@@ -19,18 +19,21 @@ st.set_page_config(page_title=page_title, page_icon=page_icon, layout="centered"
 st.title('Adult Census Income Binary Classifier')
 
 import streamlit as st
-import pickle
+# import pickle
 import numpy as np
 
 # Load the machine learning model
 @st.cache_resource
 def load_variables():
-    with open("progress.pkl", "rb") as f:
-        progress = pickle.load(f)
-    with open("preprocessor.pkl", "rb") as f:
-        preprocessor = pickle.load(f)
-    with open("preprocessing_feature_names.pkl", "rb") as f:
-        feature_names = pickle.load(f)
+    # with open("progress.pkl", "rb") as f:
+    #     progress = pickle.load(f)
+    # with open("preprocessor.pkl", "rb") as f:
+    #     preprocessor = pickle.load(f)
+    # with open("preprocessing_feature_names.pkl", "rb") as f:
+    #     feature_names = pickle.load(f)
+    progress = pd.read_pickle('progress.pkl')
+    preprocessor = pd.read_pickle('preprocessor.pkl')
+    feature_names = pd.read_pickle('preprocessing_feature_names.pkl')
     return progress, preprocessor, feature_names
 
 progress, preprocessor, feature_names = load_variables()
